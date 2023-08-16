@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<EmployeeVM>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index Employees</h1>
+
+<div class="container" p-3>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 class="text-primary"> CategoryList</h2>
+        </div>
+        <div class="col-lg-6 text-end">
+            <a asp-controller="Employee" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-square"></i> &ensp; Create new Employee</a>
+        </div>
+        <br />
+        <br />
+    </div>
+
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>   </th>
+            <th>   </th>
+        </tr>
+    </thead>
+   <tbody>
+      @if( Model!=null)
+      {
+        @foreach(var obj in Model)
+        {
+           <tr>
+              <td> @obj.FirstName</td>
+              <td> @obj.LastName</td>
+              <td> @obj.Salary</td>
+              <td><div class="btn-group" role="group">
+                  <a asp-controller="Employee" asp-action="Edit" asp-route-id="@obj.EmpID">Edit</a></div>
+                  </td>
+                  <td><div class="btn-group" role="group">
+                  <a asp-controller="Employee" asp-action="Delete" asp-route-id="@obj.EmpID">Delete</a></div>
+                  </td>
+          </tr>     
+     
+        }
+      }
+   </tbody>
+
+</table>
