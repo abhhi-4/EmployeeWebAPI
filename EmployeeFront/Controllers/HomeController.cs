@@ -22,6 +22,15 @@ namespace EmployeeFront.Controllers
         {
             return View();
         }
+        public IActionResult LogOut()
+        {
+            
+            HttpContext.Session.Remove("Username");
+            HttpContext.Session.Remove("UserId");
+           
+
+            return RedirectToAction("Login", "Login");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

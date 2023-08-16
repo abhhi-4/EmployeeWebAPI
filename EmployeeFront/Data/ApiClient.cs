@@ -30,6 +30,18 @@ namespace EmployeeFront.Data
             }
             return null;
         }
+
+        public async Task<List<UsersVM>> GetUsersFromApiAsync(string apiUrl)
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                List<UsersVM> users = JsonConvert.DeserializeObject<List<UsersVM>>(content);
+                return users;
+            }
+            return null;
+        }
         public async Task<bool> CreateEmployeeAsync(EmployeeVM newEmployee)
         {
             try
